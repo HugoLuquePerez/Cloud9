@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="icon" href="img/logoCloud9.png">
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .slider {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+        overflow: hidden;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    .slides img {
+        width: 100%;
+        border-radius: 10px;
+    }
+    .navigation {
+        position: absolute;
+        z-index: 20;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+    }
+    .prev, .next {
+        background-color: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.7);
+    }
+</style>
+  <title>Cloud9 | Albion Online</title>
+</head>
+<body>
+  <header>
+    <img height="60" width="60" src="img/logoCloud9.png" alt="Logo_Cloud9">
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="html/noticias.html">Noticias</a>
+      <a href="html/cambios.html">Cambios</a>
+      <a href="html/builds.html">Builds</a>
+    </nav>
+    <a href="https://youtube.com/" target="_blank"><img width="48" height="48" src="https://img.icons8.com/color/48/youtube-squared.png" alt="youtube-squared"/></a>
+  </header>
+  <main>
+    <div class="bc_dark">
+      <div class="slider">
+        <div class="slides">
+            <img src="img/wp2160238.jpg" alt="Imagen 1">
+            <img src="img/wp2160239.jpg" alt="Imagen 2">
+            <img src="img/10934969.jpg" alt="Imagen 3">
+        </div>
+        <pre>
+          Este es el blog oficial de Cloud9 Albion
+          con actualización semanal,
+          noticias, builds, cambios, social media.
+        </pre>
+      </div>
+      <div class="btn-1">
+        <a href="https://discord.gg/bZAAdFjp7E" target="_blank"><span>¡Unete Ya!</span></a>
+      </div>
+      <div class="navigation">
+          <button class="prev">❮</button>
+          <button class="next">❯</button>
+      </div>
+    </div>
+  </main>
+  <footer>&copy;CLOUD9 Gremio Albion Español</footer>
+</body>
+<script>
+  const slides = document.querySelector('.slides');
+  const images = document.querySelectorAll('.slides img');
+  const prev = document.querySelector('.prev');
+  const next = document.querySelector('.next');
+
+  let currentIndex = 0;
+
+  function showSlide(index) {
+      if (index >= images.length) {
+          currentIndex = 0;
+      } else if (index < 0) {
+          currentIndex = images.length - 1;
+      } else {
+          currentIndex = index;
+      }
+      const offset = -currentIndex * 100;
+      slides.style.transform = `translateX(${offset}%)`;
+  }
+
+  next.addEventListener('click', () => {
+      showSlide(currentIndex + 1);
+      console.log(currentIndex);
+  });
+
+  prev.addEventListener('click', () => {
+      showSlide(currentIndex - 1);
+      console.log(currentIndex);
+  });
+
+  setInterval(() => {
+        showSlide(currentIndex + 1);
+    }, 10000); // Cambia la imagen cada 15 segundos
+
+  showSlide(currentIndex);
+</script>
+</html>
